@@ -256,7 +256,7 @@
             border: none;
         }
 
-        .input-container > * {
+        .input-container>* {
             border-right: none !important;
         }
 
@@ -495,7 +495,8 @@
             <div class="mobile-nav">
                 <div class="back-btn">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </div>
                 <div class="mobile-title">Chat AVI</div>
@@ -534,7 +535,8 @@
 
                 <button class="send-btn" id="sendBtn" onclick="sendMessage()">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
                     </svg>
                 </button>
             </div>
@@ -643,9 +645,9 @@
         // Send to n8n webhook
         function sendToN8n(userMessage) {
             const messageId = 'msg-' + Date.now();
-            
+
             // Send message to n8n
-            fetch('https://optimum-hermit-sensibly.ngrok-free.app/webhook/chat-avi', {
+            fetch('https://optimum-hermit-sensibly.ngrok-free.app/webhook-test/webhook/chat-avi', {
                 method: 'POST',
                 mode: 'cors', // Cambiar a cors para recibir respuesta
                 headers: {
@@ -667,7 +669,7 @@
                 })
                 .then(data => {
                     console.log('Response from n8n:', data);
-                    
+
                     // Procesar respuesta real de n8n
                     if (data.response) {
                         addMessage(data.response, 'ai');
@@ -684,7 +686,7 @@
                 })
                 .catch(error => {
                     console.error('Error connecting to n8n:', error);
-                    
+
                     // Si hay error CORS, usar fallback temporal
                     if (error.message.includes('CORS') || error.message.includes('fetch')) {
                         console.log('CORS error - usando respuesta simulada temporalmente');
